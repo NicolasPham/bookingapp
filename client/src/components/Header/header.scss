@@ -122,8 +122,14 @@
                             padding: 2px 4px;
                             display: flex;
                             align-items: center;
-                            background-color: $blue;
+                            background-color: $cyan;
                             color: $gray;
+                            
+                            &:disabled {
+                                cursor: not-allowed;
+                                background-color: darkgray;
+                                color: lightgray;
+                            }
                         }
                     }
                 }
