@@ -1,0 +1,95 @@
+@import '../../App.scss';
+
+.header {
+    background-color: $blue;
+    color: $gray;
+    position: relative;
+
+
+    .headerList {
+        width: 100%;
+        max-width: 1024px;
+        margin: 20px 0 100px 0;
+        gap: 50px;
+        font-size: 20px;
+        cursor: pointer;
+
+        .headerItem {
+            gap: 10px;
+        }
+    }
+
+    .headerContent {
+        width: 100%;
+        max-width: 1024px;
+        padding-bottom: 5rem;
+
+
+        h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 1.75rem;
+        }
+
+        button {
+            font-size: 1.5rem;
+            padding: .5rem .75rem;
+            margin: 20px 0;
+            color: $gray;
+            background-color: $cyan;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    .headerSearch {
+        width: 100%;
+        max-width: 1024px;
+        font-size: 1.5rem;
+        background-color: $gray;
+        color: $blue;
+        position: absolute;
+        bottom: -25px;
+        border: 2px solid $cyan;
+        border-radius: 5px;
+        justify-content: space-between;
+
+        .searchItem {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+
+            .icon {
+                color: $cyan;
+            }
+
+            input {
+                padding: 5px;
+                border: none;
+                outline: none;
+                border-bottom: 0.5px solid $cyan;
+                background-color: $gray;
+                font-size: 1.2rem;
+            }
+
+            span {
+                font-size: 1.2rem;
+            }
+
+            button {
+                border: none;
+                padding: 5px 10px;
+                font-size: 1.2rem;
+                background-color: $cyan;
+                color: $white;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+}
