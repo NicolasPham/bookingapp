@@ -98,6 +98,7 @@
                 justify-content: flex-start;
                 box-shadow: 2px 2px 2px 2px $blue;
                 border-radius: 4px;
+                z-index: 10;
                 
                 .item {
                     display: flex;
@@ -145,6 +146,7 @@
                 color: $white;
                 font-size: .8rem;
                 background-color: none;
+                z-index: 10;
             }
 
     }
