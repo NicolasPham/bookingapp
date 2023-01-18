@@ -1,19 +1,20 @@
-import React from 'react'
-import './home.scss'
+import React from "react";
+import "./home.scss";
 
-import Navbar from '../../components/navbar/Navbar';
-import Header from '../../components/Header/Header';
+import Navbar from "../../components/navbar/Navbar";
+import Header from "../../components/Header/Header";
 
-import { properties, guestLove } from '../../constant/properties';
-import PropertyList from '../../components/propertyList/PropertyList';
-import MailList from '../../components/mailList/MailList';
+import { properties, guestLove } from "../../constant/properties";
+import PropertyList from "../../components/propertyList/PropertyList";
+import MailList from "../../components/mailList/MailList";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   return (
     <section className="home">
       <Navbar />
       <Header />
-      
+
       <div className="flex list">
         {properties.map((item, index) => (
           <article key={index}>
@@ -29,31 +30,32 @@ const Home = () => {
       <div className="featuredContainer">
         <div className="browser">
           <h1>Browse by property type</h1>
-          <PropertyList/>
+          <PropertyList />
         </div>
 
         <div className="guestLove">
           <h1>Home guests love</h1>
           <div className="listItem">
-          {guestLove.map((item, index) => (
-            <article>
-              <img src={item.img} alt="" />
-              <div className="text">
-                <h1>{item.name}</h1>
-                <span className='price'>Price start from ${item.price}</span>
-                <span><button>{item.rate}</button> - {item.status}</span>
-              </div>
-            </article>
-          ))}
+            {guestLove.map((item, index) => (
+              <article>
+                <img src={item.img} alt="" />
+                <div className="text">
+                  <h1>{item.name}</h1>
+                  <span className="price">Price start from ${item.price}</span>
+                  <span>
+                    <button>{item.rate}</button> - {item.status}
+                  </span>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
 
-
-
-        <MailList/>
+        <MailList />
+        <Footer />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,0 +1,31 @@
+@import "../../App.scss";
+
+.footer {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: center;
+    
+    .footerContainer {
+        width: 100%;
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        
+        
+        section {
+            
+            
+            ul {
+                list-style: none;
+                
+                
+                li {
+                    margin: 10px 0;
+                    cursor: pointer;
+                    color: $cyan;
+                }
+            }
+        }
+    }
+}
