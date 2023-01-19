@@ -19,7 +19,7 @@ const Post = () => {
 
           <div className="cancel">
             <h2>Free cancellation</h2>
-            <span>You can cancel later, so lock in this great price today</span>
+            <p>You can cancel later, so lock in this great price today!</p>
           </div> 
         </section>
 

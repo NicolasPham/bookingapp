@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/Header/Header";
 import Post from "../../components/post/Post";
@@ -13,25 +13,52 @@ import { format } from "date-fns";
 
 const List = () => {
   //--------------------------------------------//
-  
+  const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    }
+  ])
 
 
   //--------------------------------------------//
   return (
-    <div class="list">
+    <div className="list">
       <Navbar />
       <Header page="list" />
 
       <main>
         <div className="wrapper">
-          <section className="search">
+          <section className="relative search">
             <h1>Search</h1>
-            <form className="flex-column form">
-              <label htmlFor="destination">Destination</label>
-              <input type="text" placeholder="Ex: Toronto, etc" />
 
-              <label htmlFor="checkinDate">Check-in Date</label>
-              <span className="date">date to date</span>
+            {/* ----------Date picker-------- */}
+            {openDate && <DateRange
+                    editableDateInputs={true}
+                    onChange={(item) => setDate([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
+                    className="absolute calendar"
+                />}
+
+            {/* ----------Date picker-------- */}
+
+            <form className="flex-column form">
+              <div className="item">
+                <label htmlFor="destination">Destination</label>
+                <input type="text" placeholder="Ex: Toronto, etc" />
+              </div>
+
+              <div className="item">
+                <label htmlFor="checkinDate">Check-in Date</label>
+                <span className="date" onClick={() => setOpenDate(!openDate)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+
+
+
+              </div>
+
               <div className="flex-column options">
                 <span className="title">Options</span>
 
@@ -64,6 +91,13 @@ const List = () => {
 
 
           <section className="result">
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
             <Post/>
 
           </section>

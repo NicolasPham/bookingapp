@@ -21,6 +21,7 @@ main {
             background-color: $cyan;
             padding: 20px;
             border-radius: 20px;
+            height: 55vh;
 
 
             h1{
@@ -29,36 +30,44 @@ main {
             }
             .form {
                 margin: 10px 0;
-
-
-                label {
-                    color: $white;
-                    font-size: 16px;
-                    margin: 10px 0 5px 0;
-                }
-                input {
-                    padding: 5px 10px;
-                    margin-bottom: 20px;
-                    font-size: 14px;
-                    color: $cyan;
-                    outline: none;
-                    border: none;
-                    background-color: $gray;
-
-                    &::placeholder {
-                        color: $cyan;
+                position: relative;
+                
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    
+                    label {
+                        color: $white;
+                        font-size: 16px;
+                        margin: 10px 0 5px 0;
                     }
-                }
-
-                .date {
-                    background-color: $gray;
-                    color: $cyan;
-                    font-size: 14px;
-                    padding: 5px 10px;
+                    input {
+                        padding: 5px 10px;
+                        margin-bottom: 20px;
+                        font-size: 14px;
+                        color: $cyan;
+                        outline: none;
+                        border: none;
+                        background-color: $gray;
+                        
+                        &::placeholder {
+                            color: $cyan;
+                        }
+                    }
+                    
+                    .date {
+                        background-color: $gray;
+                        color: $cyan;
+                        font-size: 14px;
+                        padding: 5px 10px;
+                    }
+                    
                 }
 
                 .options {
                     margin-top: 20px;
+                    gap: 10px;
 
                     .title {
                     color: $white;
@@ -85,6 +94,7 @@ main {
                             background-color: $white;
                             color: $blue;
                             outline: none;
+                            text-align: right;
                         }
                     }
                 }
@@ -104,7 +114,16 @@ main {
         } //search
 
         .result {
-            flex: 2;
+            flex: 3;
         }
     } //wrapper
+}
+
+
+.calendar {
+    z-index: 2;
+    right: -300px;
+    background-color: $gray;
+    border-radius: 5px;
+    overflow: hidden;
 }
