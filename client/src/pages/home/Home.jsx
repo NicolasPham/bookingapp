@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <section className="home">
       <Navbar />
-      <Header />
+      <Header page={"home"}/>
 
       <div className="flex list">
         {properties.map((item, index) => (
@@ -37,7 +37,7 @@ const Home = () => {
           <h1>Home guests love</h1>
           <div className="listItem">
             {guestLove.map((item, index) => (
-              <article>
+              <article key={index}>
                 <img src={item.img} alt="" />
                 <div className="text">
                   <h1>{item.name}</h1>

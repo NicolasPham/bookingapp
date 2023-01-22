@@ -1,7 +1,8 @@
 import "./footer.scss";
 
 const Footer = () => {
-  return <footer className="flex footer">
+  return  (
+  <footer className="flex footer">
       <div className="footerContainer">
           <section>
               <ul>
@@ -54,7 +55,8 @@ const Footer = () => {
               </ul>
           </section>
       </div>
-  </footer>;
+  </footer>
+  );
 };
 
 export default Footer;

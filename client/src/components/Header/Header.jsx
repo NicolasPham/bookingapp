@@ -15,6 +15,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Header = ({ page }) => {
   //////////////////////////////////////////////
@@ -33,7 +34,7 @@ const Header = ({ page }) => {
   ]);
 
   //------Options---------
-
+  const [destination, setDestination] = useState("")
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
@@ -49,6 +50,13 @@ const Header = ({ page }) => {
       };
     });
   };
+
+
+  //? HandleSearch
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate("/hotels", {state: {destination, date, options}})
+  }
 
   //////////////////////////////////////////////
   return (
@@ -66,7 +74,7 @@ const Header = ({ page }) => {
         ))}
       </div>
 
-      {page !== "list" && (
+      {page == "home" && (
         <>
           <div className="headerContent">
             <h1>A lifetime of discounts? It's Genius</h1>
@@ -79,7 +87,7 @@ const Header = ({ page }) => {
           <div className="flex al-center headerSearch">
             <div className="searchItem">
               <FontAwesomeIcon icon={faBed} className="icon" />
-              <input type="text" placeholder="Where are you going?" />
+              <input type="text" placeholder="Where are you going?" onChange={(e) => setDestination(e.target.value)} />
             </div>
             <div className="searchItem">
               <FontAwesomeIcon icon={faCalendarDays} className="icon" />
@@ -154,7 +162,9 @@ const Header = ({ page }) => {
               )}
             </div>
             <div className="searchItem">
-              <button>Search</button>
+              
+              <button onClick={handleSearch}>Search</button>
+              
             </div>
           </div>
         </>

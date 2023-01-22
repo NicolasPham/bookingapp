@@ -2,7 +2,7 @@ import "./mailList.scss";
 
 const MailList = () => {
   return (
-      <section className="mail">
+      <section className="flex mail">
           
           <div className="container">
               <h1>Save Time, Save Money!</h1>
