@@ -25,6 +25,11 @@ const mongoConnect = async () => {
 mongoose.connection.on("disconnected", () => {
     console.log("MONGO has been disconnected");
 })
+/***************** Middleware ************************************/
+app.use(express.json());
+
+
+
 /***************** Routers ************************************/
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
