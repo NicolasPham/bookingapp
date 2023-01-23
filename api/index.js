@@ -36,6 +36,22 @@ app.use("/api/users", userRoutes)
 app.use("/api/rooms", roomRoutes)
 app.use("/api/hotels", hotelRoutes)
 
+
+/***************** Middleware ************************************/
+app.use((error, req, res, next) => {
+    const errorStatus = error.status || 500;
+    const errorMessage = error.message || "Something went wrong";
+
+    return res.status(errorStatus).send({
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: error.stack
+    })
+})
+
+
+/*****************************************************/
 app.get('/', (req,res) => {
     res.send("Home page")
 })
