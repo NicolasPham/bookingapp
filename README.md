@@ -8,6 +8,7 @@
 > fontawesome
 > {dateRange} from 'react-date-range';
 > {format} from 'date-fns';
+> jsonwebtoken
 
 ```
 </details>
