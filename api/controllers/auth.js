@@ -24,9 +24,13 @@ export const login = async(req,res,next) => {
         
         if (!result) return next(createError(401, "Wrong username or password"))
 
+        //Create a token to hide userInformation:
+        const token = jwt.sign({id: user._id, isAdmin: user.isAdmin})
+        console.log(token);
+
         const {password, isAdmin, ...others} = user._doc
         res.status(200).send(others)
-        
+
     } catch (error) {
         next(error)
     }
@@ -51,12 +55,14 @@ export const getAll = async(req,res,next) => {
 }
 
 export const test = async (req, res, next) => {
-    const password = req.body.password;
-    const hash = await bcrypt.hash(password, 10);
+    const user = await User.findOne({username: req.body.username});
 
-    const confirmPassword = "admin";
-    const result = await bcrypt.compare(confirmPassword, hash);
-    
-    res.send(result)
+    if (user.isAdmin) {
+        const token = jwt.sign({id: user._id, isAdmin: user.isAdmin}, process.env.JWT)
+        return res.cookie("access_token", token, {
+            httpOnly: true,
+        }).send("request sent")
+    }
+    res.send("You are not admin");
 }
 

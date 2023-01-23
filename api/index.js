@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 /*****Router imported *****/
 import authRoutes from './routes/auth.js';
@@ -38,6 +39,8 @@ app.use("/api/hotels", hotelRoutes)
 
 
 /***************** Middleware ************************************/
+app.use(cookieParser());
+
 app.use((error, req, res, next) => {
     const errorStatus = error.status || 500;
     const errorMessage = error.message || "Something went wrong";
