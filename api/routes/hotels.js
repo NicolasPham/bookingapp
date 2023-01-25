@@ -4,7 +4,6 @@ import * as hotel from "../controllers/hotel.js";
 /**Verify User and Admin */
 import { verifyToken, verifyAdmin } from "../utils/verifyToken.js";
 /***Handle Error */
-import { createError } from "../utils/error.js";
 
 const router = express.Router();
 
@@ -19,6 +18,7 @@ router.delete("/:id", verifyToken, verifyAdmin, hotel.deleteHotel);
 
 //GET ALL
 router.get("/all", hotel.getAllHotel);
+router.get("/countByCity", hotel.countByCity);
 
 //GET
 router.get("/:id", hotel.getOneHotel);
