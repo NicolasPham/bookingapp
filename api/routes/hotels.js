@@ -1,29 +1,26 @@
-import express from 'express';
-import Hotel from '../models/Hotel.js';
-import * as hotel from '../controllers/hotel.js'
+import express from "express";
+import * as hotel from "../controllers/hotel.js";
 
+/**Verify User and Admin */
+import { verifyToken, verifyAdmin } from "../utils/verifyToken.js";
 /***Handle Error */
-import {createError} from '../utils/error.js'
+import { createError } from "../utils/error.js";
 
 const router = express.Router();
 
 //CREATE
-router.get('/', (req,res) => {
-    res.send("Hotel page")
-})
+router.get("/", (req, res) => {
+  res.send("Hotel page");
+});
 
-
-router.post('/', hotel.createHotel);
-router.put('/:id', hotel.updateHotel);
-router.delete("/:id", hotel.deleteHotel)
-
+router.post("/", verifyToken, verifyAdmin, hotel.createHotel);
+router.put("/:id", verifyToken, verifyAdmin, hotel.updateHotel);
+router.delete("/:id", verifyToken, verifyAdmin, hotel.deleteHotel);
 
 //GET ALL
-router.get('/all', hotel.getAllHotel);
+router.get("/all", hotel.getAllHotel);
 
 //GET
-router.get('/:id', hotel.getOneHotel)
+router.get("/:id", hotel.getOneHotel);
 
-
-
-export default router
+export default router;
