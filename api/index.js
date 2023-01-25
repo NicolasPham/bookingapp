@@ -28,6 +28,7 @@ mongoose.connection.on("disconnected", () => {
 })
 /***************** Middleware ************************************/
 app.use(express.json());
+app.use(cookieParser());
 
 
 
@@ -39,7 +40,6 @@ app.use("/api/hotels", hotelRoutes)
 
 
 /***************** Middleware ************************************/
-app.use(cookieParser());
 
 app.use((error, req, res, next) => {
     const errorStatus = error.status || 500;
