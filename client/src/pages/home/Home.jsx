@@ -4,19 +4,15 @@ import "./home.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/Header/Header";
 
-import { properties, guestLove } from "../../constant/properties";
+import { guestLove } from "../../constant/properties";
 import PropertyList from "../../components/propertyList/PropertyList";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
+import City from "../../components/city/City";
 
-import useFetch from "../../hooks/useFetch";
 
 const Home = () => {
   /****** Fetching data **********/
-  const { data, loading, error } = useFetch(
-    "/api/hotels/countByCity?cities=Markham"
-  );
-  console.log(data);
 
   /*****************************/
   return (
@@ -24,17 +20,7 @@ const Home = () => {
       <Navbar />
       <Header page={"home"} />
 
-      <div className="flex list">
-        {properties.map((item, index) => (
-          <article key={index}>
-            <img src={item.img} alt="" />
-            <div className="text">
-              <h1>{item.name}</h1>
-              <h3>{item.props} properties</h3>
-            </div>
-          </article>
-        ))}
-      </div>
+      <City />
 
       <div className="featuredContainer">
         <div className="browser">
