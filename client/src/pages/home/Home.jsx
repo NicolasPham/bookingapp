@@ -14,7 +14,7 @@ import useFetch from "../../hooks/useFetch";
 const Home = () => {
   /****** Fetching data **********/
   const { data, loading, error } = useFetch(
-    "/api/hotels/countByCity?cities=Toronto"
+    "/api/hotels/countByCity?cities=Markham"
   );
   console.log(data);
 
