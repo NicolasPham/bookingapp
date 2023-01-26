@@ -9,11 +9,20 @@ import PropertyList from "../../components/propertyList/PropertyList";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 
+import useFetch from "../../hooks/useFetch";
+
 const Home = () => {
+  /****** Fetching data **********/
+  const { data, loading, error } = useFetch(
+    "/api/hotels/countByCity?cities=Toronto"
+  );
+  console.log(data);
+
+  /*****************************/
   return (
     <section className="home">
       <Navbar />
-      <Header page={"home"}/>
+      <Header page={"home"} />
 
       <div className="flex list">
         {properties.map((item, index) => (
