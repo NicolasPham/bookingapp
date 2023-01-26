@@ -73,7 +73,7 @@ const Header = ({ page }) => {
         ))}
       </div>
 
-      {page == "home" && (
+      {page === "home" && (
         <>
           <div className="headerContent">
             <h1>A lifetime of discounts? It's Genius</h1>

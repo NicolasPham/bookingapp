@@ -14,11 +14,6 @@ export const properties = [
         props: 112,
         img: "https://images.unsplash.com/photo-1526863336296-fac32d550655?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     },
-    {
-        name: "Quebec",
-        props: 145,
-        img: "https://images.unsplash.com/photo-1603306557434-284b08b2e0c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
-    },
 ];
 
 
