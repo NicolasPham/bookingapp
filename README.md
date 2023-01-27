@@ -20,7 +20,7 @@
 ```
 </details>
 
-### React-router-dom:
+### React-router-dom / Reducer:
 
 <details>
 
@@ -36,7 +36,57 @@
 - In the result pages:
       const location = useLocation();
 
-
-
+>> How to use useContext and useReducer:
+- Vocab:
+      - context: allowing to pass information to child components without use props
+      - reducer: a pure function, accept state, function and return a new state
+      - action: ab object literal, which describes a change to state
+      - dispatch: a function return to us by useReducer, which send action objects to reducer function
+- Example: change theme either light or dark
+    //ThemeContext.js
+      const ThemeContext = createContext();
+      export default ThemeContext;
+    //App.js
+      const [theme, setTheme] = useState("light");
+      const toggleTheme = () => {
+            newTheme = theme === light" ? "dark" : "light";
+            setTheme(newTheme);
+      }
+      
+      return (
+            <ThemeContext.Provider value = {theme}>
+                  <main>
+                        <button onClick={toggleTheme} >Change theme</buton>
+                  </main>
+            </ThemeContext.Provider>
+      )
+>> useContext take one argument, the context which it should look in the tree for, and returns the value that it finds for the context
+    // Card.js
+      import ThemeContext from './ThemeContext';
+      
+      const value = useContext(ThemeContext);
+      
+>> useReducer: must pass the reducer function that will be used, and intial_state
+      const myReducer = (state, action) => {
+            switch(action.type) {
+                  case "TOGGLE_THEME" :
+                        const newTheme = theme === "light" ? "dark" : "light";
+                        return {...state, theme: newTheme}
+                   
+                   default: state;
+            }
+      }
+      
+      const initial_state = {
+            theme: "light"
+      }
+      
+      const [state, dispatch] = useReducer(myReducer, initial_state)
+      
+    >>> dispatch:
+      const toggleTheme = {
+            const myAction = {type: "TOGGLE_THEME"}
+            dispatch(myAction)
+      }
 ```
 </details>
