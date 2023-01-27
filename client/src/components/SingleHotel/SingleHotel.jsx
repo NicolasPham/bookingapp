@@ -18,6 +18,8 @@ const location = useLocation();
 const path = location.pathname.split('/')[2];
 const {data, loading, error} = useFetch(`/hotels/${path}`)
 
+
+
 const imgList = [
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a6/b1/bond-place-hotel.jpg?w=700&h=-1&s=1",
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a7/6c/bond-place-hotel.jpg?w=700&h=-1&s=1",
@@ -45,12 +47,11 @@ const handleSlide = (direction) => {
     } else {
         newImgIndex = imgIndex === imgList.length-1 ? 0 : imgIndex+1;
     }
-    console.log(newImgIndex);
     setImgIndex(newImgIndex);
 }
 
     /**** useContext ***/
-    const { date } = useContext(SearchContext)
+    const { date, options } = useContext(SearchContext)
 
     const Milisecond_perday = 24 * 60 * 60 * 1000;
     const dayDifference = (date1, date2) => {
@@ -99,7 +100,7 @@ const handleSlide = (direction) => {
             <div className="flex-column price">
                   <h2>Perfect for {days}-night stay</h2>
                 <p>Located in the real heart of Toronto, this property has an excellent location score of 9.8!</p>
-                  <p><b>${data.cheapestPrice * days * options.room}</b> ({days} nights)</p>
+                  <p><b>${data.cheapestPrice * days * options.room}</b> ({days} nights - {options.room} room(s))</p>
                 <button>Reserve or Bool Now!</button>
             </div>
         </div>
