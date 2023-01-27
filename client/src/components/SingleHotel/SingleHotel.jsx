@@ -99,7 +99,7 @@ const handleSlide = (direction) => {
             <div className="flex-column price">
                   <h2>Perfect for {days}-night stay</h2>
                 <p>Located in the real heart of Toronto, this property has an excellent location score of 9.8!</p>
-                  <p><b>${data.cheapestPrice * days}</b> ({days} nights)</p>
+                  <p><b>${data.cheapestPrice * days * options.room}</b> ({days} nights)</p>
                 <button>Reserve or Bool Now!</button>
             </div>
         </div>
