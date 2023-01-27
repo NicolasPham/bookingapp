@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from '../../context/AuthContext.js'
+import { useNavigate } from 'react-router-dom';
 import "./login.scss";
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
     }
 
     const { user, loading, error, dispatch } = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -24,28 +26,22 @@ const Login = () => {
         try {
             const res = await axios.post("/auth/login", credential)
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+            navigate('/');
         } catch (err) {
             dispatch({ type: 'LOGIN_FAIL', payload: err.response.data })
         }
-    }
-
-    const handleTest = async (e) => {
-        e.preventDefault();
-        console.log("click")
-        // console.log(credential)
-        // const res = await axios.post("/auth/login", credential);
-        // console.log(res.data)
     }
 
 
     return (
         <main>
             <div className="login">
-                <h1>Welcome to Nicolas BookingApp</h1>
+                <h2>Welcome to</h2>
+                <h1>Nicolas Booking</h1>
                 <form>
                     <input type="text" placeholder="username" id="username" onChange={handleChange} />
                     <input type="password" placeholder="password" name="password" id="password" onChange={handleChange} />
-                    <button onClick={handleTest}>Login</button>
+                    <button onClick={handleLogin}>Login</button>
                 </form>
             </div>
         </main>
