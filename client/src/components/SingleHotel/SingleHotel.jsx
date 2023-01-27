@@ -7,10 +7,16 @@ import {
   faLocationDot, faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react';
+import {useFetch} from '../../hooks/useFetch.js'
+import { useLocation } from 'react-router-dom';
 
 
 const SingleHotel = () => {
 /***************************************************/
+const location = useLocation();
+const path = location.pathname.split('/')[2];
+const {data, loading, error} = useFetch(`/hotels/${path}`)
+
 const imgList = [
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a6/b1/bond-place-hotel.jpg?w=700&h=-1&s=1",
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a7/6c/bond-place-hotel.jpg?w=700&h=-1&s=1",
@@ -44,16 +50,16 @@ const handleSlide = (direction) => {
 
 
 /***************************************************/
-  return (
-    <section className="flex-column single">
+  return (<>
+    {loading ? "Loading" : <section className="flex-column single">
         <header>
             <div className="flex-column content">
-                <h1>Bond Place Hotel</h1>
+                <h1>{data.name}</h1>
                 <div className="flex address">
                     <span><FontAwesomeIcon icon={faLocationDot} /></span>
-                    <span>65 Dundas St E, Toronto, ON M5B 2G8</span>
+                    <span>{data.address}</span>
                 </div>
-                <p>Exellent location - 500m from the airport</p>
+                <p>Exellent location - {data.distance}m from the airport</p>
             </div>
             <button>Reserve or Book Now!</button>
         </header>
@@ -74,8 +80,8 @@ const handleSlide = (direction) => {
     
         <div className="flex info">
             <div className="content">
-                <h1>Stay in the heart of Toronto</h1>
-                <p>The Bond Place Hotel Downtown Toronto is ideally located in the heart of downtown Toronto at Yonge and Dundas Square. The Hotel is across the street from the Eaton Centre and steps away from the Toronto Theatre District, including the Canon Theatre, Massey Hall, Elgin/Winter Garden Theatre, The Panasonic Theatre, and other local area attractions. Many downtown corporate and government offices, colleges and universities, are within walking distance. The Hotel is also central to downtown Toronto hospitals, with St. Michael's Hospital located across the street.</p>
+                <h1>{data.title}</h1>
+                <p>{data.desc}</p>
             </div>
 
             <div className="flex-column price">
@@ -85,8 +91,8 @@ const handleSlide = (direction) => {
                 <button>Reserve or Bool Now!</button>
             </div>
         </div>
-    </section>
-  )
+    </section>}
+    </>)
 }
 
 export default SingleHotel

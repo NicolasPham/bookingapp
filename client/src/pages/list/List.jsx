@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/Header/Header";
@@ -11,23 +12,30 @@ import "./list.scss";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
+import { format} from "date-fns";
 
 const List = () => {
   //--------------------------------------------//
   const location = useLocation();
 
+  const [destination, setDestination] = useState(location.state.destination)
+  
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState({
-    minPrice: 50,
-    maxPrice: 1000,
+    minPrice: 0,
+    maxPrice: 999,
     adult: location.state.options.adult,
     children: location.state.options.children,
     room: location.state.options.room,
   });
-  console.log(location);
-  console.log(options);
+  
+  const {data, loading, error, reFetch} = useFetch(`/hotels/all?city=${destination}&min=${options.minPrice || 0}&max=${options.maxPrice || 999}`)
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    reFetch();
+  }
 
   //--------------------------------------------//
   return (
@@ -57,7 +65,7 @@ const List = () => {
             <form className="flex-column form">
               <div className="item">
                 <label htmlFor="destination">Destination</label>
-                <input type="text" defaultValue={location.state.destination} />
+                <input type="text" defaultValue={destination} onChange={e => setDestination(e.target.value)}/>
               </div>
 
               <div className="item">
@@ -141,19 +149,20 @@ const List = () => {
                 </div>
               </div>
 
-              <button>Search</button>
+              <button onClick={handleSearch} >
+                Search
+                </button>
             </form>
           </section>
 
           <section className="result">
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {loading ? "Loading" : <>
+            {data.map(item => (
+              <Post key={item._id} item={item} />
+            ))}
+            </>
+            }
+
           </section>
         </div>
       </main>

@@ -1,21 +1,22 @@
+import { Link } from "react-router-dom";
 import "./post.scss";
 
-const Post = () => {
+const Post = ({item}) => {
   return (
     <article>
       <div className="postWrapper">
         <section className="left">
-          <img src="https://images.unsplash.com/photo-1619676289827-3b6eefa7ff93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
+          <img src={item.photos[0]} alt="" />
         </section>
 
         <section className="middle">
-          <h1>Tower Street Aparment</h1>
-          <span>500m from center</span>
+          <h1>{item.name}</h1>
+          <span>{item.distance}</span>
 
           <span className="free">Free airport taxi</span>
 
-          <span className="bold">Studio aparment with air conditioning</span>
-          <span className="size">Entire studio - 1 bathroom - 210sqft 1 full bed</span>
+          <span className="bold">{item.title}</span>
+          <span className="size">{item.desc}</span>
 
           <div className="cancel">
             <h2>Free cancellation</h2>
@@ -26,13 +27,17 @@ const Post = () => {
         <section className="right">
             <div className="rating">
               <span>Execllent</span>
-              <button>8.9</button>
+              <button>{item.rating || "0.0"}</button>
             </div>
 
             <div className="price">
-              <h3>$112</h3>
+              <h3>From ${item.cheapestPrice}</h3>
               <span>Includes taxes and fees</span>
-              <button>See availability</button>
+              <button>
+              <Link to={`/hotels/${item._id}`} className="link">
+                See availability
+              </Link>
+                </button>
             </div>
         </section>
       </div> 
