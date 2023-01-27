@@ -6,9 +6,10 @@ import {
     faArrowRight,
   faLocationDot, faXmark
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {useFetch} from '../../hooks/useFetch.js'
 import { useLocation } from 'react-router-dom';
+import { SearchContext } from '../../context/SearchContext';
 
 
 const SingleHotel = () => {
@@ -48,6 +49,17 @@ const handleSlide = (direction) => {
     setImgIndex(newImgIndex);
 }
 
+    /**** useContext ***/
+    const { date } = useContext(SearchContext)
+
+    const Milisecond_perday = 24 * 60 * 60 * 1000;
+    const dayDifference = (date1, date2) => {
+        if (!date1 && !date2) return 1;
+        const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        return Math.ceil(timeDiff / Milisecond_perday) + 1;
+    }
+
+    const days = date[0] ? dayDifference(date[0].endDate, date[0].startDate) : 1;
 
 /***************************************************/
   return (<>
@@ -85,9 +97,9 @@ const handleSlide = (direction) => {
             </div>
 
             <div className="flex-column price">
-                <h2>Perfect for 9-night stay</h2>
+                  <h2>Perfect for {days}-night stay</h2>
                 <p>Located in the real heart of Toronto, this property has an excellent location score of 9.8!</p>
-                <p><b>$945</b> (9 nights)</p>
+                  <p><b>${data.cheapestPrice * days}</b> ({days} nights)</p>
                 <button>Reserve or Bool Now!</button>
             </div>
         </div>
