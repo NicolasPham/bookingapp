@@ -8,16 +8,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from 'react';
 import {useFetch} from '../../hooks/useFetch.js'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
+import { AuthContext } from '../../context/AuthContext.js';
+
 
 
 const SingleHotel = () => {
 /***************************************************/
 const location = useLocation();
 const path = location.pathname.split('/')[2];
-const {data, loading, error} = useFetch(`/hotels/${path}`)
+    const { data, loading } = useFetch(`/hotels/${path}`)
 
+    const { user } = useContext(AuthContext);
+    const [authorize, setAuthorize] = useState(false);
+    const navigate = useNavigate();
+
+    const handleReserve = () => {
+        if (!user) return navigate('/login');
+
+        setAuthorize(!authorize);
+    }
 
 
 const imgList = [
@@ -65,6 +76,7 @@ const handleSlide = (direction) => {
 /***************************************************/
   return (<>
     {loading ? "Loading" : <section className="flex-column single">
+          {authorize && <span style={{ color: "green", fontSize: 20 }}>You have been authorized to reserve</span>}
         <header>
             <div className="flex-column content">
                 <h1>{data.name}</h1>
@@ -74,7 +86,7 @@ const handleSlide = (direction) => {
                 </div>
                 <p>Exellent location - {data.distance}m from the airport</p>
             </div>
-            <button>Reserve or Book Now!</button>
+              <button onClick={handleReserve}>Reserve or Book Now!</button>
         </header>
         <div className="img">
             {imgList.map((item, index) => (
@@ -101,7 +113,7 @@ const handleSlide = (direction) => {
                   <h2>Perfect for {days}-night stay</h2>
                 <p>Located in the real heart of Toronto, this property has an excellent location score of 9.8!</p>
                   <p><b>${data.cheapestPrice * days * options.room}</b> ({days} nights - {options.room} room(s))</p>
-                <button>Reserve or Bool Now!</button>
+                  <button onClick={handleReserve}>Reserve or Bool Now!</button>
             </div>
         </div>
     </section>}

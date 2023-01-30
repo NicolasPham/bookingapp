@@ -27,10 +27,9 @@ const City = () => {
 
     const navigate = useNavigate();
     const { dispatch } = useContext(SearchContext);
-    const handleSearch = () => {
-        setDestination("Toronto")
+    const handleSearch = (city) => {
         dispatch({ type: "NEW_SEARCH", payload: { city: destination, date: date, options: options } })
-        navigate("/hotels", { state: { destination, date, options } });
+        navigate("/hotels", { state: { destination: city, date, options } });
         
     };
     
@@ -38,7 +37,7 @@ const City = () => {
     return (<>
         {loading ? "Loading, please wait" : <div className="flex list">
             {properties.map((item, index) => (
-                <article key={index} onClick={handleSearch}>
+                <article key={index} onClick={() => handleSearch(item.name)}>
                     <img src={item.img} alt="" />
                     <div className="text">
                         <h1>{item.name}</h1>
