@@ -21,6 +21,7 @@ main {
         height: fit-content;
         width: fit-content;
         border-radius: 20px;
+        background-color: lightgray;
 
 
         h1 {
@@ -42,6 +43,7 @@ main {
 
             input {
                 font-size: 16px;
+                padding: 5px 10px;
                 color: $blue;
                 outline: none;
                 border: none;
@@ -54,6 +56,21 @@ main {
                 background-color: $blue;
                 color: $white;
                 border-radius: 5px;
+            }
+        }
+
+        p {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                padding: 4px 8px;
+                background-color: $cyan;
+                color: $white;
+                border: none;
+                cursor: pointer;
             }
         }
     }

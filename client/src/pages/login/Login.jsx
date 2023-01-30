@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from '../../context/AuthContext.js'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./login.scss";
 
 const Login = () => {
@@ -43,6 +43,8 @@ const Login = () => {
                     <input type="password" placeholder="password" name="password" id="password" onChange={handleChange} />
                     <button onClick={handleLogin}>Login</button>
                 </form>
+                <p>Don't have account? <Link to="/register" className="link"><button>Register</button></Link></p>
+
             </div>
         </main>
     )

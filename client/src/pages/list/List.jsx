@@ -43,7 +43,7 @@ const List = () => {
       <Navbar />
       <Header page="list" />
 
-      <main>
+      <div className="listContent">
         <div className="wrapper">
           <section className="relative search">
             <h1>Search</h1>
@@ -165,7 +165,7 @@ const List = () => {
 
           </section>
         </div>
-      </main>
+      </div>
     </div>
   );
 };

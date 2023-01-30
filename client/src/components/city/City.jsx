@@ -1,18 +1,44 @@
 import { useFetch } from "../../hooks/useFetch.js";
 import { properties } from "../../constant/properties.js";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext.js";
+
 
 
 const City = () => {
+    const [destination, setDestination] = useState("");
+    const [date, setDate] = useState([
+        {
+          startDate: new Date(),
+          endDate: new Date(),
+          key: "selection",
+        },
+      ]);
+      const [options, setOptions] = useState({
+        adult: 1,
+        children: 0,
+        room: 1,
+      });
 
     const { data, loading, error } = useFetch(
         "/hotels/countByCity?cities=Toronto,Vancouver,Calgary"
     );
 
+    const navigate = useNavigate();
+    const { dispatch } = useContext(SearchContext);
+    const handleSearch = () => {
+        setDestination("Toronto")
+        dispatch({ type: "NEW_SEARCH", payload: { city: destination, date: date, options: options } })
+        navigate("/hotels", { state: { destination, date, options } });
+        
+    };
+    
 
     return (<>
         {loading ? "Loading, please wait" : <div className="flex list">
             {properties.map((item, index) => (
-                <article key={index}>
+                <article key={index} onClick={handleSearch}>
                     <img src={item.img} alt="" />
                     <div className="text">
                         <h1>{item.name}</h1>
