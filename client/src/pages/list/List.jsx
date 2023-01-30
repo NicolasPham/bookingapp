@@ -30,7 +30,7 @@ const List = () => {
     room: location.state.options.room,
   });
   
-  const {data, loading, error, reFetch} = useFetch(`/hotels/all?city=${destination}&min=${options.minPrice || 0}&max=${options.maxPrice || 999}`)
+  const { data, loading, reFetch } = useFetch(`/hotels/all?city=${destination}&min=${options.minPrice || 0}&max=${options.maxPrice || 999}`)
 
   const handleSearch = (e) => {
     e.preventDefault();

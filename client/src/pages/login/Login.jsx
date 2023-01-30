@@ -17,7 +17,7 @@ const Login = () => {
         ))
     }
 
-    const { user, loading, error, dispatch } = useContext(AuthContext)
+    const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {

@@ -1,7 +1,5 @@
 import React from 'react'
 import { useContext } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import "./navbar.scss"
@@ -9,10 +7,9 @@ import "./navbar.scss"
 
 const Navbar = () => {
 
-  const {user, loading, error, dispatch} = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
   const handleLogOut = (e) => {
-    localStorage.clear();
     dispatch({type: "LOGIN_OUT"});
   }
 
