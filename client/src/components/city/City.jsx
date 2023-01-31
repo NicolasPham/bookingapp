@@ -21,7 +21,7 @@ const City = () => {
         room: 1,
       });
 
-    const { data, loading, error } = useFetch(
+    const { data, loading } = useFetch(
         "/hotels/countByCity?cities=Toronto,Vancouver,Calgary"
     );
 
