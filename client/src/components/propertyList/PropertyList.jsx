@@ -3,14 +3,33 @@ import './propertyList.scss';
 import { useFetch } from '../../hooks/useFetch';
 
 import { propertyType } from '../../constant/properties';
+import { useNavigate } from 'react-router-dom';
 
 const PropertyList = () => {
+
+    const [date, setDate] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: "selection",
+        },
+    ]);
+
+    const [options, setOptions] = useState({
+        adult: 1,
+        children: 0,
+        room: 1,
+    });
+
     const { data, loading } = useFetch("/hotels/countByType?types=hotel,aparment")
 
-    const [showError, setShowError] = useState(false);
+    const [type, setType] = useState("")
+    const navigate = useNavigate();
 
     const browseType = (type) => {
-        setShowError(!showError);
+        setType(type);
+        navigate("/hotels", { state: { type, date, options } })
+
     }
 
     return (<>
@@ -27,7 +46,6 @@ const PropertyList = () => {
           ))}
             </section>
         }
-        {showError && <span style={{ color: "red" }}>NOT FUNCTIONING AT THE MOMENT! </span>}
     </>)
 }
 
