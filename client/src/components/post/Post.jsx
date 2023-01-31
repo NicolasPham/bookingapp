@@ -16,7 +16,7 @@ const Post = ({item}) => {
           <span className="free">Free airport taxi</span>
 
           <span className="bold">{item.title}</span>
-          <span className="size">{item.desc}</span>
+          {/* <span className="size">{item.desc}</span> */}
 
           <div className="cancel">
             <h2>Free cancellation</h2>

@@ -30,17 +30,7 @@ const path = location.pathname.split('/')[2];
         setAuthorize(!authorize);
     }
 
-
-const imgList = [
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a6/b1/bond-place-hotel.jpg?w=700&h=-1&s=1",
-    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e1/a7/6c/bond-place-hotel.jpg?w=700&h=-1&s=1",
-    "https://pix10.agoda.net/hotelImages/4896894/0/4eb370725199289c36e7ff7fe1707e28.jpg?ca=9&ce=1&s=1024x768",
-    "https://i.travelapi.com/hotels/1000000/10000/2600/2509/661a351f_z.jpg",
-    "https://www.oyster.com/wp-content/uploads/sites/35/2019/05/standard-queen-v16336356-1440.jpg",
-    "https://www.oyster.com/wp-content/uploads/sites/35/2019/05/standard-queen-v16336356-1440.jpg",
-    "http://www.torontohotelsincanada.com/data/Photos/700x500/4424/442490/442490847.JPEG",
-    "https://images.trvl-media.com/hotels/1000000/10000/2600/2509/9f1e7eb8.jpg?impolicy=fcrop&w=670&h=385&p=1&q=medium",
-]
+    const imgList = data.photos || ["Loading", "Loading", "Loading"]
 
 const [showImg, setShowImg] = useState(false);
 const [imgIndex, setImgIndex] = useState(0);
@@ -89,7 +79,7 @@ const handleSlide = (direction) => {
               <button onClick={handleReserve}>Reserve or Book Now!</button>
         </header>
         <div className="img">
-            {imgList.map((item, index) => (
+              {imgList.map((item, index) => (
                 <img key={index} src={item} alt="" onClick={() => handleShowImg(index)} />
             ))}
         </div>
@@ -98,7 +88,7 @@ const handleSlide = (direction) => {
             <FontAwesomeIcon icon={faXmark} className="close" onClick={() => setShowImg(false)} />
             <div className="singleImg">
                 <FontAwesomeIcon icon={faArrowLeft} className="arrow" onClick={() => handleSlide("l")}/>
-                <img src={imgList[imgIndex]} alt="" />
+                  <img src={imgList[imgIndex]} alt="" />
                 <FontAwesomeIcon icon={faArrowRight} className="arrow" onClick={() => handleSlide("r")}/>
             </div>
         </div>}
