@@ -44,6 +44,9 @@ const Login = () => {
                     <button onClick={handleLogin}>Login</button>
                 </form>
                 <p>Don't have account? <Link to="/register" className="link"><button>Register</button></Link></p>
+                <div className="account">
+                    <p>username / password: admin</p>
+                </div>
 
             </div>
         </main>
