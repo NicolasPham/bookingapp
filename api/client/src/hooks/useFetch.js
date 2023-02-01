@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {axiosIntance} from '../config.js'
 
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ export const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(url);
+        const res = await axiosIntance.get(url);
         setData(res.data);
       } catch (err) {
         setError(err);
