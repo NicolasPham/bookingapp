@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 /*****Router imported *****/
 import authRoutes from "./routes/auth.js";
@@ -51,9 +52,11 @@ app.use((error, req, res, next) => {
   });
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "/client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
 /*****************************************************/
